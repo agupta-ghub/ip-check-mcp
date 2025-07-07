@@ -45,4 +45,5 @@ def lookup_ip(request: IPRequest):
 
 @app.get("/mcp-manifest.json")
 def get_manifest():
-    return FileResponse("mcp-manifest.json", media_type="application/json")
+    manifest_path = os.path.abspath("mcp-manifest.json")
+    return FileResponse(manifest_path, media_type="application/json")

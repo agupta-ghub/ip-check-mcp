@@ -14,17 +14,17 @@ A public [Model Context Protocol (MCP)](https://github.com/modelcontext/protocol
 
 ---
 
-## 📦 API Endpoint
-POST /lookup_ip
-GET /mcp-manifest.json
+API Endpoints:
 
-### `POST /lookup_ip`
+- POST /lookup_ip
+- GET /mcp-manifest.json
+
+POST /lookup_ip
 
 Returns geolocation and risk score for a given IP.
 
-#### Request
+Request
 
-```json
 {
   "ip": "8.8.8.8"
 }
@@ -33,7 +33,7 @@ i.e. curl -X POST https://ip-check-mcp.onrender.com/lookup_ip \
      -H "Content-Type: application/json" \
      -d '{"ip": "8.8.8.8"}
 
-#### Response
+Response
 
 {
   "ip": "8.8.8.8",
@@ -45,7 +45,7 @@ i.e. curl -X POST https://ip-check-mcp.onrender.com/lookup_ip \
   "risk_score": 0
 }
 
-#### Deployment Instructions (Render)
+Deployment Instructions (Render)
 
 1. Clone This Repo
 git clone https://github.com/your-username/ip-check-mcp.git
@@ -57,5 +57,5 @@ Key	Value
 IPQS_API_KEY	Your ipqualityscore.com API key
 IPINFO_TOKEN	Your ipinfo.io token
 
-#### License
+License
 free to use, fork, and modify.

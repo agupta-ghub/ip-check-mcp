@@ -57,5 +57,4 @@ Key	Value
 IPQS_API_KEY	Your ipqualityscore.com API key
 IPINFO_TOKEN	Your ipinfo.io token
 
-License
-free to use, fork, and modify.
+License: GNU GENERAL PUBLIC LICENSE

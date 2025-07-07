@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: ip-check-mcp
+    env: docker
+    plan: free
+    region: oregon
+    envVars:
+      - key: IPQS_API_KEY
+        sync: false

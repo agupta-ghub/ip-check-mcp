@@ -1,0 +1,33 @@
+{
+  "schema_version": "v1",
+  "name": "IP Check MCP",
+  "description": "Returns geolocation, ISP, VPN status, and risk score of an IP.",
+  "contact_email": "burger_rumples.4v@icloud.com",
+  "capabilities": [
+    {
+      "name": "lookup_ip",
+      "description": "Checks geolocation and risk status for a given IP.",
+      "url": "/lookup_ip",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "ip": { "type": "string" }
+        },
+        "required": ["ip"]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "ip": { "type": "string" },
+          "country": { "type": "string" },
+          "city": { "type": "string" },
+          "region": { "type": "string" },
+          "isp": { "type": "string" },
+          "is_vpn": { "type": "boolean" },
+          "risk_score": { "type": "integer" }
+        },
+        "required": ["ip", "country", "city", "region", "isp", "is_vpn", "risk_score"]
+      }
+    }
+  ]
+}

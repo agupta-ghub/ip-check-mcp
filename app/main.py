@@ -5,8 +5,8 @@ import os
 
 app = FastAPI()
 
-# Replace with your IPQualityScore API key
 IPQS_API_KEY = os.getenv("IPQS_API_KEY")
+IPINFO_TOKEN = os.getenv("IPINFO_TOKEN")
 
 class IPRequest(BaseModel):
     ip: str
@@ -24,17 +24,17 @@ class IPResponse(BaseModel):
 def lookup_ip(request: IPRequest):
     ip = request.ip
 
-    # Step 1: IP geolocation (using ipapi.co)
-    geo = requests.get(f"https://ipapi.co/{ip}/json/").json()
+    # Get geolocation info from ipinfo.io
+    geo_res = requests.get(f"https://ipinfo.io/{ip}?token={IPINFO_TOKEN}")
+    geo = geo_res.json()
 
-    # Step 2: Risk score + VPN check (IPQualityScore)
-    risk = requests.get(
-        f"https://ipqualityscore.com/api/json/ip/{IPQS_API_KEY}/{ip}"
-    ).json()
+    # Get risk score and VPN check from IPQualityScore
+    risk_res = requests.get(f"https://ipqualityscore.com/api/json/ip/{IPQS_API_KEY}/{ip}")
+    risk = risk_res.json()
 
     return IPResponse(
         ip=ip,
-        country=geo.get("country_name", "Unknown"),
+        country=geo.get("country", "Unknown"),
         city=geo.get("city", "Unknown"),
         region=geo.get("region", "Unknown"),
         isp=geo.get("org", "Unknown"),

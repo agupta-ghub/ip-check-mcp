@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+from fastapi.responses import FileResponse
 import requests
 import os
 
@@ -41,3 +42,7 @@ def lookup_ip(request: IPRequest):
         is_vpn=risk.get("vpn", False),
         risk_score=risk.get("fraud_score", 0)
     )
+
+@app.get("/mcp-manifest.json")
+def get_manifest():
+    return FileResponse("mcp-manifest.json", media_type="application/json")
